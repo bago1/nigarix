@@ -1,0 +1,16 @@
+com/portfolio/nigar/NigarApplication.java
+ com.portfolio.nigar.NigarApplication
+com/portfolio/nigar/entities/Experience.java
+ com.portfolio.nigar.entities.Experience
+com/portfolio/nigar/entities/Portfolio.java
+ com.portfolio.nigar.entities.Portfolio
+com/portfolio/nigar/entities/Skills.java
+ com.portfolio.nigar.entities.Skills
+com/portfolio/nigar/entities/Testimonials.java
+ com.portfolio.nigar.entities.Testimonials
+com/portfolio/nigar/entities/Service.java
+ com.portfolio.nigar.entities.Service
+com/portfolio/nigar/entities/Socials.java
+ com.portfolio.nigar.entities.Socials
+com/portfolio/nigar/entities/Person.java
+ com.portfolio.nigar.entities.Person
