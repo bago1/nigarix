@@ -1,16 +1,12 @@
 com/portfolio/nigar/NigarApplication.java
  com.portfolio.nigar.NigarApplication
-com/portfolio/nigar/entities/Experience.java
- com.portfolio.nigar.entities.Experience
-com/portfolio/nigar/entities/Portfolio.java
- com.portfolio.nigar.entities.Portfolio
-com/portfolio/nigar/entities/Skills.java
- com.portfolio.nigar.entities.Skills
-com/portfolio/nigar/entities/Testimonials.java
- com.portfolio.nigar.entities.Testimonials
-com/portfolio/nigar/entities/Service.java
- com.portfolio.nigar.entities.Service
-com/portfolio/nigar/entities/Socials.java
- com.portfolio.nigar.entities.Socials
-com/portfolio/nigar/entities/Person.java
- com.portfolio.nigar.entities.Person
+com/portfolio/nigar/entities/Photos.java
+ com.portfolio.nigar.entities.Photos
+com/portfolio/nigar/repos/EmailRepo.java
+ com.portfolio.nigar.repos.EmailRepo
+com/portfolio/nigar/controllers/EmailReceiverApi.java
+ com.portfolio.nigar.controllers.EmailReceiverApi
+com/portfolio/nigar/services/EmailReceiverService.java
+ com.portfolio.nigar.services.EmailReceiverService
+com/portfolio/nigar/entities/Email.java
+ com.portfolio.nigar.entities.Email
