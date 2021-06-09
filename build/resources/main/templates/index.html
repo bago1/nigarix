@@ -456,14 +456,15 @@
         </div>
 
         <div style="border:1px solid yellow">
-            <form action="#" th:action="@{/main}" th:object="${email}" method="post">
-                <p>Message: <input type="text" th:field="*{fullname}"/></p>
-                <p>Message: <input type="text" th:field="*{email}"/></p>
-                <p>Message: <input type="text" th:field="*{subject}"/></p>
+            <form action="#" th:action="@{/index}" th:object="${email}" method="post">
+                <p>Fullname: <input type="text" th:field="*{fullname}"/></p>
+                <p>Email: <input type="text" th:field="*{emailAddress}"/></p>
+                <p>Subject: <input type="text" th:field="*{subject}"/></p>
                 <p>Message: <input type="text" th:field="*{message}"/></p>
                 <p><input type="submit" value="Submit"/>
                     <input type="reset" value="Reset"/></p>
             </form>
+
 
         </div>
 
