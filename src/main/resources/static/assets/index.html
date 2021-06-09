@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -455,21 +454,17 @@
             <p>City</p> <input type="text">
             <input type="submit">
         </div>
-        String emailAddress;
-        String fbAddress;
-        String instagramAddress;
 
-        String email;
-        String phoneNumber;
         <div style="border:1px solid yellow">
-            <h2>Socials</h2>
-            <p>email</p> <input type="text">
-            <p>facebook</p> <input type="text">
-            <p>Start date</p> <input type="date">
-            <p>End date</p> <input type="date">
-            <p>Work Summary</p> <input type="text">
-            <p>City</p> <input type="text">
-            <input type="submit">
+            <form action="#" th:action="@{/main}" th:object="${email}" method="post">
+                <p>Message: <input type="text" th:field="*{fullname}"/></p>
+                <p>Message: <input type="text" th:field="*{email}"/></p>
+                <p>Message: <input type="text" th:field="*{subject}"/></p>
+                <p>Message: <input type="text" th:field="*{message}"/></p>
+                <p><input type="submit" value="Submit"/>
+                    <input type="reset" value="Reset"/></p>
+            </form>
+
         </div>
 
     </div><!-- End  -->
