@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,10 +24,12 @@ public class EmailController {
         return md;
     }
 
+//    @CrossOrigin(origins = "http://localhost:8081")
     @PostMapping("/email")
     public ModelAndView sendEmail(Model model,Email email) {
-        emailRepo.save(email);
+
         model.addAttribute("email", email);
+        emailRepo.save(email);
         ModelAndView md = new ModelAndView();
         md.setViewName("index");
         return md;
