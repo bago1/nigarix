@@ -1,27 +1,21 @@
 package com.portfolio.nigar.controllers;
 
+import org.apache.commons.io.IOUtils;
 import com.portfolio.nigar.entities.UploadFile;
-import com.portfolio.nigar.repos.EmailRepo;
 import com.portfolio.nigar.repos.UploadFileRepo;
 import com.portfolio.nigar.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
-import org.dom4j.rule.Mode;
-import org.springframework.ui.Model;
+import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.io.InputStream;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -37,14 +31,19 @@ public class ImageController {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         uploadFile.setPhotos(fileName);
         UploadFile savedFile = repo.save(uploadFile);
-        String uploadDir ="user-photos/"+ savedFile.getId();
-        FileUploadUtil.saveFile(uploadDir,fileName,multipartFile);
-        return new RedirectView("/",true);
+        String uploadDir = "./src/main/resources/static/assets/img/" + savedFile.getId();
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        return new RedirectView("/", true);
     }
 
-    @PostMapping("/a")
-    public String ss(){
-        return "/";
+    @GetMapping(value = "/getphoto",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] getPhoto() throws IOException{
+        File jarDir = new File(ClassLoader.getSystemClassLoader().getResource(".").getPath());
+        System.out.println(jarDir.getAbsolutePath());
+        InputStream in = getClass()
+                .getResourceAsStream("/static/assets/img/1/kara2.png");
+        return IOUtils.toByteArray(in);
     }
 
 }

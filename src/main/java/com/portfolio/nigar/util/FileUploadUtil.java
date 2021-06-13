@@ -29,4 +29,5 @@ public class FileUploadUtil {
 }
 //save eden Files.copy(inputstream, fileapath) -dir. yani bu inputstreami, yani bytleari save ele bu patha.
 
+//todo sheklin olcusu boyuk olanda frontda yazsin ki olcu boyuldur.
 
