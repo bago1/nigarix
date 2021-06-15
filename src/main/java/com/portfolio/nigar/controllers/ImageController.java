@@ -1,11 +1,11 @@
 package com.portfolio.nigar.controllers;
 
+import com.portfolio.nigar.entities.PhotoType;
 import org.apache.commons.io.IOUtils;
 import com.portfolio.nigar.entities.UploadFile;
 import com.portfolio.nigar.repos.UploadFileRepo;
 import com.portfolio.nigar.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
+
+import static com.portfolio.nigar.entities.PhotoType.PROFILE_PHOTO;
 
 
 @RestController
@@ -32,16 +33,25 @@ public class ImageController {
                                  UploadFile uploadFile) throws IOException {
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
         uploadFile.setPhotos(fileName);
-        uploadFile.setPhotoType(UploadFile.PhotoType.PROFILE_PHOTO);
-        System.out.println("ssss");
+        uploadFile.setPhotoType(PROFILE_PHOTO);
+        UploadFile savedFile;
+        if (repo.existsUploadFileByPhotoType(PROFILE_PHOTO)) {
+            UploadFile var = repo.findUploadFileByPhotoType(PROFILE_PHOTO);
+            var.setPhotos(fileName);
+            var.setPhotoType(PROFILE_PHOTO);
+             savedFile =  repo.save(var);
 
-//        System.out.println(repo.findByType());
+        } else {
+             savedFile = repo.save(uploadFile);
+        }
+            String uploadDir = UPLOAD_DIR + savedFile.getId();
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            return new RedirectView("/", true);
 
-        UploadFile savedFile = repo.save(uploadFile);
-        String uploadDir = UPLOAD_DIR + savedFile.getId();
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-        return new RedirectView("/", true);
+
     }
+
+
 
 //    //works good uploads photo
 //    @PostMapping("/uploads")

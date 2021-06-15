@@ -1,20 +1,13 @@
 package com.portfolio.nigar.entities;
 
 import com.sun.istack.NotNull;
-import com.sun.istack.Nullable;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 public class UploadFile {
-
-    public enum PhotoType{
-        PROFILE_PHOTO, OTHER_PHOTO
-    }
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -25,7 +18,7 @@ public class UploadFile {
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    private UploadFile.PhotoType photoType;
+    private PhotoType photoType;
 
 
 
