@@ -17,6 +17,10 @@ com/portfolio/nigar/entities/UploadFile.java
  com.portfolio.nigar.entities.UploadFile
 com/portfolio/nigar/entities/PhotoType.java
  com.portfolio.nigar.entities.PhotoType
+com/portfolio/nigar/exceptions/ImageNotFoundExceptionHandler.java
+ com.portfolio.nigar.exceptions.ImageNotFoundExceptionHandler
+com/portfolio/nigar/exceptions/ImageNotFoundException.java
+ com.portfolio.nigar.exceptions.ImageNotFoundException
 com/portfolio/nigar/repos/UploadFileRepo.java
  com.portfolio.nigar.repos.UploadFileRepo
 com/portfolio/nigar/controllers/ImageController.java

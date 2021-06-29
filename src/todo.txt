@@ -1,0 +1,2 @@
+todo imageaddcontorllere Home sehifesindeki sekli elave etme api-si yazmaq
+daha sonra hemin api-nin servisini refactor elemek. shekil elave elemek bir api olsun service layerde uje ferqlensin
