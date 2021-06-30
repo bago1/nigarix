@@ -23,5 +23,7 @@ com/portfolio/nigar/exceptions/ImageNotFoundException.java
  com.portfolio.nigar.exceptions.ImageNotFoundException
 com/portfolio/nigar/repos/UploadFileRepo.java
  com.portfolio.nigar.repos.UploadFileRepo
+com/portfolio/nigar/services/ImageService.java
+ com.portfolio.nigar.services.ImageService
 com/portfolio/nigar/controllers/ImageController.java
  com.portfolio.nigar.controllers.ImageController

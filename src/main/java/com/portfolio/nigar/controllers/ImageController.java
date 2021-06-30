@@ -2,6 +2,7 @@ package com.portfolio.nigar.controllers;
 
 import com.portfolio.nigar.entities.PhotoType;
 import com.portfolio.nigar.exceptions.ImageNotFoundException;
+import com.portfolio.nigar.services.ImageService;
 import javassist.NotFoundException;
 import org.apache.commons.io.IOUtils;
 import com.portfolio.nigar.entities.UploadFile;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
+import static com.portfolio.nigar.entities.PhotoType.OTHER_PHOTO;
 import static com.portfolio.nigar.entities.PhotoType.PROFILE_PHOTO;
 
 
@@ -26,28 +28,20 @@ import static com.portfolio.nigar.entities.PhotoType.PROFILE_PHOTO;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:8081")
 public class ImageController {
+    private final ImageService imageService;
     private final UploadFileRepo repo;
-    private final String UPLOAD_DIR = "./src/main/resources/static/assets/img/";
 
-    @PostMapping("/updateavatar")
+    @PostMapping("/updateavatar/{type}")
     @CrossOrigin(origins = "http://localhost:8081")
     public RedirectView addPhoto(@RequestParam("file") MultipartFile multipartFile,
-                                 UploadFile uploadFile) throws IOException {
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-        uploadFile.setPhotos(fileName);
-        uploadFile.setPhotoType(PROFILE_PHOTO);
-        UploadFile savedFile;
-        if (repo.existsUploadFileByPhotoType(PROFILE_PHOTO)) {
-            UploadFile var = repo.findUploadFileByPhotoType(PROFILE_PHOTO);
-            var.setPhotos(fileName);
-            var.setPhotoType(PROFILE_PHOTO);
-            savedFile = repo.save(var);
+                                 UploadFile uploadFile, @PathVariable String type) throws IOException {
+        if (type.equals("PROFILE_PHOTO")) {
+            imageService.setProfilePhoto(multipartFile, uploadFile);
 
-        } else {
-            savedFile = repo.save(uploadFile);
+        } else if(type.equals("OTHER_PHOTO")){
+            imageService.setOtherPhoto(multipartFile,uploadFile);
         }
-        String uploadDir = UPLOAD_DIR + savedFile.getId();
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
         return new RedirectView("/", true);
 
 
@@ -57,10 +51,10 @@ public class ImageController {
             produces = MediaType.IMAGE_JPEG_VALUE)
     public String getphoto() throws IOException {
 
-        InputStream is =  getClass()
+        InputStream is = getClass()
                 .getResourceAsStream(repo.getUploadFileByPhotoType(PROFILE_PHOTO)
-                .orElseThrow(ImageNotFoundException::new)
-                .getPhotosImagePath());
+                        .orElseThrow(ImageNotFoundException::new)
+                        .getPhotosImagePath());
         byte[] bytes = IOUtils.toByteArray(is);
         String encoded = java.util.Base64.getEncoder().encodeToString(bytes);
 
