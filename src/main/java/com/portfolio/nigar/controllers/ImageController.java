@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Objects;
 
 import static com.portfolio.nigar.entities.PhotoType.OTHER_PHOTO;
@@ -31,28 +32,38 @@ public class ImageController {
     private final ImageService imageService;
     private final UploadFileRepo repo;
 
-    @PostMapping("/updateavatar/{type}")
-    @CrossOrigin(origins = "http://localhost:8081")
-    public RedirectView addPhoto(@RequestParam("file") MultipartFile multipartFile,
-                                 UploadFile uploadFile, @PathVariable String type) throws IOException {
-        if (type.equals("PROFILE_PHOTO")) {
-            imageService.setProfilePhoto(multipartFile, uploadFile);
 
-        } else if(type.equals("OTHER_PHOTO")){
-            imageService.setOtherPhoto(multipartFile,uploadFile);
-        }
+    @PostMapping("/submitphoto")
+    @CrossOrigin(origins = "http://localhost:8081")
+    public RedirectView addBcgPhoto(@RequestParam("file") MultipartFile multipartFile,
+                                    UploadFile uploadFile,
+                                    @RequestParam("type") Integer type) throws IOException {
+        System.out.println(type);
+        imageService.uploadPhoto(multipartFile, uploadFile, type);
 
         return new RedirectView("/", true);
-
-
     }
 
     @GetMapping(value = "/getavatar",
             produces = MediaType.IMAGE_JPEG_VALUE)
-    public String getphoto() throws IOException {
+    public String getProfilePhoto() throws IOException {
 
         InputStream is = getClass()
                 .getResourceAsStream(repo.getUploadFileByPhotoType(PROFILE_PHOTO)
+                        .orElseThrow(ImageNotFoundException::new)
+                        .getPhotosImagePath());
+        byte[] bytes = IOUtils.toByteArray(is);
+        String encoded = java.util.Base64.getEncoder().encodeToString(bytes);
+
+        return encoded;
+    }
+
+    @GetMapping(value = "/getbcgphoto",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    public String getBcgPhoto() throws IOException {
+
+        InputStream is = getClass()
+                .getResourceAsStream(repo.getUploadFileByPhotoType(OTHER_PHOTO)
                         .orElseThrow(ImageNotFoundException::new)
                         .getPhotosImagePath());
         byte[] bytes = IOUtils.toByteArray(is);

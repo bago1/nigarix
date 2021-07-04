@@ -1,4 +1,4 @@
-1. todo imageaddcontorllere Home sehifesindeki sekli elave etme api-si yazmaq
-2. todo daha sonra hemin api-nin servisini refactor elemek. shekil elave elemek bir api olsun service layerde uje ferqlensin
+
+2.todo men hal hazirda frontdan ayrica int gonderirem, sonra ona gore if else ile profiletype secirem, frontdan birbasa  bu custom type-ni nece gonderim
 3. todo spirng security qowmaq (login parol)
 4. todo adminpanel tabini lagv elemek ve login olunduqdan sonra change photo duymelerinin gorsenmesi

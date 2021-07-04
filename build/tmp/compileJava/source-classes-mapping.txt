@@ -1,28 +1,32 @@
-com/portfolio/nigar/services/EmailReceiverService.java
- com.portfolio.nigar.services.EmailReceiverService
 com/portfolio/nigar/util/FileUploadUtil.java
  com.portfolio.nigar.util.FileUploadUtil
+com/portfolio/nigar/controllers/EmailController.java
+ com.portfolio.nigar.controllers.EmailController
+com/portfolio/nigar/entities/PhotoType.java
+ com.portfolio.nigar.entities.PhotoType
 com/portfolio/nigar/NigarApplication.java
  com.portfolio.nigar.NigarApplication
+com/portfolio/nigar/services/EmailReceiverService.java
+ com.portfolio.nigar.services.EmailReceiverService
+com/portfolio/nigar/exceptions/ImageNotFoundExceptionHandler.java
+ com.portfolio.nigar.exceptions.ImageNotFoundExceptionHandler
+com/portfolio/nigar/entities/Email.java
+ com.portfolio.nigar.entities.Email
+com/portfolio/nigar/exceptions/ImageNotFoundException.java
+ com.portfolio.nigar.exceptions.ImageNotFoundException
 com/portfolio/nigar/config/MvcConfig.java
  com.portfolio.nigar.config.MvcConfig
  com.portfolio.nigar.config.MvcConfig$1
-com/portfolio/nigar/controllers/EmailController.java
- com.portfolio.nigar.controllers.EmailController
 com/portfolio/nigar/repos/EmailRepo.java
  com.portfolio.nigar.repos.EmailRepo
-com/portfolio/nigar/entities/Email.java
- com.portfolio.nigar.entities.Email
-com/portfolio/nigar/entities/UploadFile.java
- com.portfolio.nigar.entities.UploadFile
-com/portfolio/nigar/entities/PhotoType.java
- com.portfolio.nigar.entities.PhotoType
-com/portfolio/nigar/exceptions/ImageNotFoundExceptionHandler.java
- com.portfolio.nigar.exceptions.ImageNotFoundExceptionHandler
-com/portfolio/nigar/exceptions/ImageNotFoundException.java
- com.portfolio.nigar.exceptions.ImageNotFoundException
 com/portfolio/nigar/repos/UploadFileRepo.java
  com.portfolio.nigar.repos.UploadFileRepo
+com/portfolio/nigar/entities/UploadFile.java
+ com.portfolio.nigar.entities.UploadFile
+com/portfolio/nigar/exceptions/UploadPhotoTypeNotMatchesExceptionHandler.java
+ com.portfolio.nigar.exceptions.UploadPhotoTypeNotMatchesExceptionHandler
+com/portfolio/nigar/exceptions/UploadPhotoTypeNotMatchesException.java
+ com.portfolio.nigar.exceptions.UploadPhotoTypeNotMatchesException
 com/portfolio/nigar/services/ImageService.java
  com.portfolio.nigar.services.ImageService
 com/portfolio/nigar/controllers/ImageController.java

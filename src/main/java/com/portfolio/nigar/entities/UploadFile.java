@@ -20,6 +20,8 @@ public class UploadFile {
     @NotNull
     private PhotoType photoType;
 
+    Integer type;
+
 
 
     @Transient
